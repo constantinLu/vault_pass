@@ -1,0 +1,112 @@
+name: vault_pass
+description: "Password management app"
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: #iphone icons
+  uuid: #use uuid type
+  local_auth: #user biometric auth
+  flutter_secure_storage: #store authCredentials into secure storage
+  flutter_bloc: #state management
+  equatable: #equality helper
+  logger: #for logging
+  flutter_svg_provider: #to use svg images
+  google_fonts: #fonts
+  drift: #db orm
+  sqlite3_flutter_libs: #sqlite
+  path_provider: #dart package for finding phone os storage folders
+  path: #dart package for getting paths from phone
+  flutter_svg:
+  fpdart: #functional programming
+  freezed_annotation: #freeze
+  json_annotation: #for json/toMap code generation
+  json_serializable:
+  injectable: #dependency injection
+
+  kt_dart: #imutable lists
+  another_flushbar: #custom flushbar
+  rxdart:
+  flutter_speed_dial: #fab speed buttons
+  mailer: #sending mails
+  font_awesome_flutter: # new icons
+  intl:
+  file_picker:
+  permission_handler: #for asking permisions
+  oktoast:
+
+  #stacked
+  stacked: ^3.2.0
+  stacked_services: ^1.0.0
+  stacked_themes: ^0.3.10
+  stacked_hooks:
+  flutter_hooks:
+
+  #dependency injection
+  get_it: #service locator
+  auto_route: #routing
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail:
+  #integration_test:
+  bloc_test:
+  flutter_lints: ^3.0.1
+  drift_dev:
+  build_runner: ^2.3.3
+  drift_db_viewer:
+  flutter_launcher_icons: ^0.13.1
+
+  #generators
+  stacked_generator: ^1.5.1
+  freezed:
+  injectable_generator:
+  auto_route_generator:
+  faker:
+
+flutter:
+  uses-material-design: true
+  assets:
+    #images
+    - assets/images/vaultpass.png
+    - assets/images/avatar.svg
+    - assets/images/account.svg
+    - assets/images/address.svg
+    - assets/images/creditcard.svg
+    #icons
+
+    #db-test
+    - assets/db/vaultpass_test.sqlite
+
+
+#providing the icon app
+flutter_icons:
+  image_path: "assets/images/vaultpass.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
