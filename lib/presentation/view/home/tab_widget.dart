@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vault_pass/presentation/core/assets.dart';
+import 'package:stacked/stacked.dart';
+import 'package:vault_pass/application/assets.dart';
+import 'package:vault_pass/presentation/view/home/home_model.dart';
 
-import '../../domain/model/record.dart';
-import '../core/device_size.dart';
-import '../utils/css.dart';
+import '../../../domain/model/record.dart';
+import '../../core/device_size.dart';
+import '../../utils/css.dart';
 
-class TabWidget extends StatelessWidget {
+class TabWidget extends ViewModelWidget<HomeModel> {
+  TabWidget(this.currentIndex);
+
   final Map<RecordType, String> _imageType = {
     RecordType.account: IMAGE_ACCOUNT,
     RecordType.address: IMAGE_ADDRESS,
@@ -23,7 +27,7 @@ class TabWidget extends StatelessWidget {
   bool checkIndex({required int index}) => currentIndex == index;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeModel homeModel) {
     // return BlocConsumer<RecordTypeBloc, RecordTypeState>(
     //   listener: (BuildContext context, RecordTypeState state) {
     //     state.maybeMap(
@@ -52,6 +56,7 @@ class TabWidget extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     //recordTypeBloc.add(const RecordTypeEvent.accountTabBtnPressed(0));
+                    homeModel.routeTo(0);
                   },
                   child: TabButton(checkIndex(index: 0), RecordType.account),
                 ),
@@ -60,6 +65,7 @@ class TabWidget extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     currentIndex = 1;
+                    homeModel.getAddress();
                     //recordTypeBloc.add(const RecordTypeEvent.addressTabBtnPressed(1));
                   },
                   child: TabButton(checkIndex(index: 1), RecordType.address),

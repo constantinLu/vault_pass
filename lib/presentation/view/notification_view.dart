@@ -6,7 +6,6 @@ import '../utils/style.dart';
 import '../widgets/title_widget.dart';
 import '../widgets/view_card_widget.dart';
 
-@RoutePage()
 class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

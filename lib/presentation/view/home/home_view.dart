@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:vault_pass/infrastructure/setup/app.router.dart';
+import 'package:vault_pass/presentation/view/home/home_model.dart';
+import 'package:vault_pass/presentation/view/home/tab_widget.dart';
+import 'package:vault_pass/presentation/widgets/reset_back_btn_widget.dart';
+
+import '../../../domain/model/record.dart';
+import '../../core/device_size.dart';
+import '../../utils/css.dart';
+import '../../utils/palette.dart';
+import '../../utils/style.dart';
+import '../../widgets/animations_widget.dart';
+import '../../widgets/avatar_widget.dart';
+
+class HomeView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<HomeModel>.reactive(
+      viewModelBuilder: () => HomeModel(),
+      builder: (BuildContext context, HomeModel model, Widget? child) {
+        return ResetBackBtnWidget(
+          child: Scaffold(
+            ///# HEADER
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.black,
+              elevation: 0,
+              leading: Transform.scale(
+                scaleX: -1,
+                //! LOGOUT BUTTON
+                child: IconButton(
+                    tooltip: "Logout",
+                    onPressed: () {
+                      model.routeToView(Routes.loginView);
+                    },
+                    icon: const Icon(
+                      Icons.logout_sharp,
+                      color: whiteFull,
+                    )),
+              ),
+              //TODO: or salute based on the time of the day
+              //TODO: Make this dynamic of showing the initials, "Welcome Lungu or something"
+              title: const Center(child: Text("Vault Pass", style: bodyText15_white_bold)),
+              actions: [
+                Avatar(
+                  onTapDisabled: false,
+                )
+              ],
+              toolbarHeight: heightPercentOf(8, context),
+            ),
+
+            ///# BODY
+            //body:
+            body: TabWidget(0),
+
+            ///# FOOTER
+            floatingActionButton: const FabWidget(),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: BottomAppBar(
+              shape: AutomaticNotchedShape(
+                  const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  RoundedRectangleBorder(borderRadius: BorderRadius.all(radiusCircular))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        //model.routeTo(0);
+                        //context.read<FavoriteBloc>().getFavorites();
+                        // context.pushTo(const FavoriteView());
+                        model.routeToView(Routes.notificationView);
+                      },
+                      icon: const Icon(Icons.favorite_border)),
+                  IconButton(
+                      onPressed: () {
+                        model.routeToView(Routes.notificationView);
+                      },
+                      // onPressed: () => context.pushTo(const NotificationView()),
+                      icon: const Icon(Icons.notifications_none)),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+//` FLOATING ACTION BUTTON FAB!
+class FabWidget extends StatelessWidget {
+  const FabWidget({
+    Key? key,
+  }) : super(key: key);
+
+  void selectView(RecordType recordType, BuildContext context) {
+    switch (recordType) {
+      case RecordType.account:
+        // context.pushTo(const AccountAddView());
+        break;
+      case RecordType.address:
+        // context.teleportTo(const AccountView());
+        break;
+      case RecordType.business:
+        // context.teleportTo(const AccountView());
+        break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RotateWidget(
+      degree: const Degree.flat(),
+      child: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(radiusCircular)),
+        child: const Icon(Icons.add),
+        onPressed: () => selectView(RecordType.account, context),
+      ),
+    );
+  }
+}

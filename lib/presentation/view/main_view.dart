@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
+import 'package:vault_pass/common/package/sizeup.dart';
 import 'package:vault_pass/infrastructure/setup/app.router.dart';
+import 'package:vault_pass/infrastructure/setup/theme_setup.dart';
 
-//TODO:
-//https://blog.devgenius.io/send-emails-without-backend-in-flutter-48d0c506ab4c - FOR EMAIL
+import '../../infrastructure/setup/app.locator.dart';
+
 class MainView extends StatelessWidget {
   static const String title = 'Vault Pass';
 
-  const MainView({super.key});
+  MainView({super.key});
+
+  final _themeService = locator<ThemeService>();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: Routes.homeView,
-      onGenerateRoute: StackedRouter().onGenerateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Gilroy',
-        textTheme: TextTheme(
-          titleLarge: TextStyle(
-            fontSize: 50,
-            fontWeight: FontWeight.w900,
-            color: Colors.red,
+    return Sizeup(
+      builder: (BuildContext context, Orientation orientation, deviceType) {
+        return ThemeBuilder(
+          themes: getThemes(),
+          darkTheme: primaryTheme,
+          lightTheme: primaryTheme,
+          defaultThemeMode: ThemeMode.dark,
+          builder: (context, defaultTheme, darkTheme, themeMode) => MaterialApp(
+            initialRoute: Routes.homeView,
+            onGenerateRoute: StackedRouter().onGenerateRoute,
+            navigatorKey: StackedService.navigatorKey,
+            debugShowCheckedModeBanner: false,
+            title: 'Vault Pass',
+            theme: darkTheme,
+            darkTheme: darkTheme,
+            themeMode: themeMode,
+            navigatorObservers: [
+              StackedService.routeObserver,
+            ],
           ),
-        ),
-      ),
-      navigatorObservers: [
-        StackedService.routeObserver,
-      ],
+        );
+      },
     );
   }
 }

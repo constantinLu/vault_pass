@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vault_pass/domain/core/extensions.dart';
 
-import '../core/assets.dart';
+import '../../application/assets.dart';
 
 class Avatar extends StatelessWidget {
   final bool onTapDisabled;
