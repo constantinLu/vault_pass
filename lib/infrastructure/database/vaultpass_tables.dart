@@ -27,7 +27,7 @@ class RecordTable extends Table {
 
   TextColumn get name => text().withLength(min: 2, max: 32)();
 
-  TextColumn get type => textEnum<RecordType>()();
+  TextColumn get type => textEnum<Type>()();
 
   TextColumn get accountType => textEnum<AccountType>()();
 

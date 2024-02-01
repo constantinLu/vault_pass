@@ -31,7 +31,7 @@ class RecordRepository extends DatabaseAccessor<VaultPassDb> with _$RecordReposi
     return RecordMapper.toModels(records);
   }
 
-  Future<List<Record>> getByType(AccountType accountType, RecordType recordType) async {
+  Future<List<Record>> getByType(AccountType accountType, Type recordType) async {
     final recordEntries = await (select(recordTable)
           ..where((recordEntity) => recordEntity.accountType.equals(accountType.value) & recordEntity.type.equals(recordType.value)))
         .get();

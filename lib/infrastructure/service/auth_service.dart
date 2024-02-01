@@ -2,6 +2,7 @@ import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 import 'package:vault_pass/domain/failures/auth_failure.dart';
 import 'package:vault_pass/domain/microtypes/microtypes.dart';
+import 'package:vault_pass/domain/model/types.dart';
 import 'package:vault_pass/domain/model/user.dart';
 import 'package:vault_pass/infrastructure/service/user_service.dart';
 import 'package:vault_pass/infrastructure/setup/app.locator.dart';
@@ -15,7 +16,11 @@ class AuthService implements IAuthFacade {
 
   @override
   Future<AuthCredentials> getCredentials() {
-    return userService.getAuthCredentials();
+    return Future.delayed(
+      const Duration(milliseconds: 300),
+      () => AuthCredentials.authCredentials("asd", "asd", AuthState.authorizedBiometrics),
+    );
+    //return userService.getAuthCredentials();
   }
 
   @override

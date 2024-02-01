@@ -47,6 +47,7 @@ class _RecordWidgetState extends State<RecordWidget> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           child: Card(
+            color: Palette.greyPlatinum,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadiusCircular,
             ),
@@ -75,7 +76,7 @@ class _RecordWidgetState extends State<RecordWidget> {
                   ),
 
                   /// ROW 2
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -146,16 +147,16 @@ class _RecordWidgetState extends State<RecordWidget> {
 
   void selectView(Record record, BuildContext context) {
     switch (record.type) {
-      case RecordType.record:
+      case Type.record:
         //context.pushTo(AccountView(record: record));
         break;
-      case RecordType.address:
+      case Type.address:
         // context.pushTo(AccountView(record: record));
         break;
-      case RecordType.card:
+      case Type.card:
         //context.pushTo(AccountView(record: record));
         break;
-      case RecordType.document:
+      case Type.document:
       // TODO: Handle this case.
     }
   }
@@ -217,7 +218,6 @@ class LogoImage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
-        color: Colors.red,
         shape: RoundedRectangleBorder(
           borderRadius: borderRadiusCircular,
         ),

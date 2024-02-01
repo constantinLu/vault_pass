@@ -5,7 +5,7 @@ import 'package:vault_pass/presentation/utils/palette.dart';
 import 'package:vault_pass/presentation/utils/style.dart';
 import 'package:vault_pass/presentation/view/auth/register/register_model.dart';
 import 'package:vault_pass/presentation/view/auth/register/register_view.dart';
-import 'package:vault_pass/presentation/widgets/reset_back_btn_widget.dart';
+import 'package:vault_pass/presentation/widgets/btns/reset_back_btn.dart';
 import 'package:vault_pass/presentation/widgets/text_button_widget.dart';
 
 class RegisterViewMobile extends ViewModelWidget<RegisterViewModel> {

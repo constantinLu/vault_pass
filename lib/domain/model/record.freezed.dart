@@ -19,7 +19,7 @@ mixin _$Record {
 //core
   UniqueId get id => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
-  RecordType get type => throw _privateConstructorUsedError;
+  Type get type => throw _privateConstructorUsedError;
   AccountType get accountType => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
   DateTime get updatedDate => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $RecordCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       Name name,
-      RecordType type,
+      Type type,
       AccountType accountType,
       DateTime createdDate,
       DateTime updatedDate,
@@ -92,7 +92,7 @@ class _$RecordCopyWithImpl<$Res, $Val extends Record>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as RecordType,
+              as Type,
       accountType: null == accountType
           ? _value.accountType
           : accountType // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ abstract class _$$RecordImplCopyWith<$Res> implements $RecordCopyWith<$Res> {
   $Res call(
       {UniqueId id,
       Name name,
-      RecordType type,
+      Type type,
       AccountType accountType,
       DateTime createdDate,
       DateTime updatedDate,
@@ -191,7 +191,7 @@ class __$$RecordImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as RecordType,
+              as Type,
       accountType: null == accountType
           ? _value.accountType
           : accountType // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ class _$RecordImpl implements _Record {
   @override
   final Name name;
   @override
-  final RecordType type;
+  final Type type;
   @override
   final AccountType accountType;
   @override
@@ -334,7 +334,7 @@ abstract class _Record implements Record {
   factory _Record(
       {required final UniqueId id,
       required final Name name,
-      required final RecordType type,
+      required final Type type,
       required final AccountType accountType,
       required final DateTime createdDate,
       required final DateTime updatedDate,
@@ -350,7 +350,7 @@ abstract class _Record implements Record {
   @override
   Name get name;
   @override
-  RecordType get type;
+  Type get type;
   @override
   AccountType get accountType;
   @override

@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class Palette {
-  static const List<Color> gradients = [whiteCultured, greyPlatinum, greySpanish, greyDim];
+  static const List<Color> gradients = [greySpanish, greyDim, blackJet, whiteCultured];
+
   static primaryColor(context) => Theme.of(context).primaryColor;
 
   //blacks
@@ -17,12 +17,10 @@ class Palette {
   static const whiteSnow = Color.fromRGBO(248, 248, 247, 1);
   static const whiteCultured = Color.fromRGBO(221, 221, 216, 1);
 
-
 //greys
   static const greyPlatinum = Color.fromRGBO(228, 228, 228, 1);
   static const greySpanish = Color.fromRGBO(148, 148, 148, 1);
   static const greyDim = Color.fromRGBO(106, 106, 106, 1);
-
 }
 
 //blacks
@@ -35,12 +33,10 @@ const whiteFull = Color.fromRGBO(255, 255, 255, 1);
 const whiteSnow = Color.fromRGBO(248, 248, 247, 1);
 const whiteCultured = Color.fromRGBO(221, 221, 216, 1);
 
-
 //greys
 const greyPlatinum = Color.fromRGBO(228, 228, 228, 1);
 const greySpanish = Color.fromRGBO(148, 148, 148, 1);
 const greyDim = Color.fromRGBO(106, 106, 106, 1);
-
 
 //testing opacity //HEXA
 // 100% — FF

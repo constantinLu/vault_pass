@@ -24,8 +24,7 @@ class SplashViewModel extends BaseViewModel {
     var result = null;
     // VERIFY IF IT WAS LOGIN WITH PASSWORD
     final futureCredentials = await _authFacade.getCredentials();
-    final eitherAuthCredentials =
-        futureCredentials.value.fold((l) => Either.left(l), (r) => Either.right(r));
+    final eitherAuthCredentials = futureCredentials.value.fold((l) => Either.left(l), (r) => Either.right(r));
 
     if (eitherAuthCredentials.isLeft()) {
       final error = eitherAuthCredentials.asLeft();
@@ -33,6 +32,10 @@ class SplashViewModel extends BaseViewModel {
       result = AuthState.unauthenticated;
     } else {
       final token = eitherAuthCredentials.asRight() as Token;
+      if (token.authState == AuthState.authorizedBiometrics) {
+        //# If Biometrics work -> HomeView
+        result = AuthState.authorizedBiometrics;
+      }
       if (token.emailAddress != null && token.authState == AuthState.authorizedCredentials) {
         /// IN THIS POINT THE USER ALREADY PASSED THE LOGIN PAGE
         final isAuthenticated = await BiometricsService.authenticate();
@@ -62,9 +65,9 @@ class SplashViewModel extends BaseViewModel {
       case AuthState.authorizedCredentials:
         _router.replaceWithHomeView(userId: userId!);
       case AuthState.authorizedBiometrics:
-        _router.replaceWithAboutUsSettingsView();
+        _router.replaceWithHomeView(userId: userId!);
       case AuthState.authorizedPin:
-      // TODO: Handle this case.
+        _router.replaceWithHomeView(userId: userId!);
     }
   }
 }
