@@ -6,8 +6,7 @@ import 'package:vault_pass/domain/model/types.dart';
 
 extension AuthStateExtension on AuthState {
   static AuthState valueOf(String value) {
-    return AuthState.values.firstWhere((element) => element.toString().split('.').last == value,
-        orElse: () => AuthState.unauthenticated);
+    return AuthState.values.firstWhere((element) => element.toString().split('.').last == value, orElse: () => AuthState.unauthenticated);
   }
 
   static String nameA(AuthState state) {

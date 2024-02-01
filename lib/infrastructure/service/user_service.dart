@@ -23,8 +23,7 @@ class UserService {
 
   ///Docs: Checks if the credentials matches with the user from the database
   ///Return: Authenticated User or AuthFailure
-  Future<Either<AuthFailure, AuthCredentials>> authenticateUser(
-      EmailAddress emailAddress, Password password) async {
+  Future<Either<AuthFailure, AuthCredentials>> authenticateUser(EmailAddress emailAddress, Password password) async {
     final credentials = await _userRepository.authenticateUser(emailAddress, password);
     AuthCredentials authCredentials = credentials.fold(
       (authFailure) => throw Exception('Failed to get AuthCredentials: $authFailure'),

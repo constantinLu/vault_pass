@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:raven/raven.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vault_pass/presentation/utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
 import 'unknown_model.dart';
 

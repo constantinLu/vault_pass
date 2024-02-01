@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils/css.dart';
-import '../utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
 class PasswordFieldWidget extends StatelessWidget {
   final bool isPasswordVisible;

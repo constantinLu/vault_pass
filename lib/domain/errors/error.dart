@@ -27,4 +27,3 @@ class UnexpectedError extends Error {
     return Error.safeToString('$explanation Failure was: $message');
   }
 }
-

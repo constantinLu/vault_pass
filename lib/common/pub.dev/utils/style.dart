@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vault_pass/presentation/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
 
 // headers
 const headline34 = TextStyle(

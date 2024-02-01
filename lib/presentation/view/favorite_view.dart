@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
-import '../core/device_size.dart';
-import '../utils/palette.dart';
-import '../utils/style.dart';
+import '../../common/pub.dev/sizeup/device_size.dart';
 import '../widgets/avatar_widget.dart';
 
 class FavoriteView extends StatelessWidget {

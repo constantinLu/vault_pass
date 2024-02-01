@@ -45,8 +45,7 @@ class Record with _$Record {
           required String description,
           required String url,
           Type? recordType,
-          AccountType? accountType
-          }) =>
+          AccountType? accountType}) =>
       Record(
         id: UniqueId(),
         name: Name(recordName),

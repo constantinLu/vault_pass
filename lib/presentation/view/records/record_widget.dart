@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/helper.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 import 'package:vault_pass/domain/model/types.dart';
-import 'package:vault_pass/presentation/utils/helper.dart';
 
 import '../../../domain/model/record.dart';
-import '../../core/device_size.dart';
-import '../../utils/css.dart';
-import '../../utils/palette.dart';
-import '../../utils/style.dart';
+import '../../../common/pub.dev/sizeup/device_size.dart';
 
 class RecordWidget<T> extends StatefulWidget {
   final T record;

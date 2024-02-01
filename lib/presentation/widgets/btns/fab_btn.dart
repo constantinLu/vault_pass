@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vault_pass/presentation/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
 import 'package:vault_pass/presentation/view/home/home_model.dart';
 import 'package:vault_pass/presentation/widgets/animations_widget.dart';
 

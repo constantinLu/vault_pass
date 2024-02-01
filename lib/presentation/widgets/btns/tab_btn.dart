@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vault_pass/presentation/core/device_size.dart';
-import 'package:vault_pass/presentation/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/device_size.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
 
 class TabButton extends StatelessWidget {
   final bool checkIndex;

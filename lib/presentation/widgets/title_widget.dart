@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import '../utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
 class TitleWidget extends StatelessWidget {
   final String value;
