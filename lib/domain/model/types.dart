@@ -11,18 +11,18 @@ enum AccountType {
   }
 }
 
-enum RecordType {
-  record("record"),
-  address("address"),
-  card("card"),
-  document("document");
+enum Type {
+  record("Records"),
+  address("Addresses"),
+  card("Cards"),
+  document("Documents");
 
   final String value;
 
-  const RecordType(this.value);
+  const Type(this.value);
 
-  static RecordType valueOf(String value) {
-    return RecordType.values.firstWhere((val) => val.value == value);
+  static Type valueOf(String value) {
+    return Type.values.firstWhere((val) => val.value == value);
   }
 }
 
@@ -34,11 +34,6 @@ enum AuthState {
   authorizedBiometrics;
 
   static AuthState valueOf(String? value) {
-    return AuthState.values.firstWhere((element) =>
-    element
-        .toString()
-        .split('.')
-        .last == value,
-        orElse: () => AuthState.unauthenticated);
+    return AuthState.values.firstWhere((element) => element.toString().split('.').last == value, orElse: () => AuthState.unauthenticated);
   }
 }

@@ -24,14 +24,11 @@ class UserRepository extends DatabaseAccessor<VaultPassDb> with _$UserRepository
     return UserMapper.toModel(user);
   }
 
-  Future<Either<AuthFailure, AuthCredentials>> authenticateUser(
-      EmailAddress emailAddress, Password password) async {
-    final UserEntry? userEntry = await (select(userTable)
-          ..where((userEntity) => userEntity.email.equals(emailAddress.get())))
-        .getSingleOrNull();
+  Future<Either<AuthFailure, AuthCredentials>> authenticateUser(EmailAddress emailAddress, Password password) async {
+    final UserEntry? userEntry =
+        await (select(userTable)..where((userEntity) => userEntity.email.equals(emailAddress.get()))).getSingleOrNull();
     try {
-      final authCredentials = AuthCredentials.authCredentials(
-          userEntry!.id, userEntry!.email, AuthState.authorizedCredentials);
+      final authCredentials = AuthCredentials.authCredentials(userEntry!.id, userEntry!.email, AuthState.authorizedCredentials);
       return Either.right(authCredentials);
     } catch (e) {
       return Either.left(const AuthFailure.notAuthorized()); //BAD CREDENTIALS
@@ -40,8 +37,7 @@ class UserRepository extends DatabaseAccessor<VaultPassDb> with _$UserRepository
 
   Future<User> getUser(UniqueId userId) async {
     final id = UniqueId.toStr(userId);
-    final userEntry =
-        await (select(userTable)..where((userEntity) => userEntity.id.equals(id))).getSingle();
+    final userEntry = await (select(userTable)..where((userEntity) => userEntity.id.equals(id))).getSingle();
     final user = UserMapper.toModel(userEntry);
     print("Delay the getUser call");
     return Future.delayed(

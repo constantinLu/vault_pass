@@ -29,7 +29,7 @@ class DbTestData extends DatabaseAccessor<VaultPassDb> with _$DbTestDataMixin {
         passwordRecord: "password",
         description: "some account",
         logo: "noLogo",
-        type: RecordType.document,
+        type: Type.document,
         accountType: AccountType.personal,
         url: "https://google.account.com",
         isFavorite: false,

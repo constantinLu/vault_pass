@@ -11,7 +11,7 @@ class Record with _$Record {
     //core
     required UniqueId id,
     required Name name,
-    required RecordType type,
+    required Type type,
     required AccountType accountType,
     required DateTime createdDate,
     required DateTime updatedDate,
@@ -27,7 +27,7 @@ class Record with _$Record {
   factory Record.empty() => Record(
         id: UniqueId.fromUniqueString(""),
         name: Name(""),
-        type: RecordType.record,
+        type: Type.record,
         accountType: AccountType.personal,
         loginRecord: Name(""),
         passwordRecord: Password(""),
@@ -44,13 +44,13 @@ class Record with _$Record {
           required String logo,
           required String description,
           required String url,
-          RecordType? recordType,
+          Type? recordType,
           AccountType? accountType
           }) =>
       Record(
         id: UniqueId(),
         name: Name(recordName),
-        type: recordType ?? RecordType.record,
+        type: recordType ?? Type.record,
         accountType: accountType ?? AccountType.personal,
         loginRecord: Name(""),
         passwordRecord: Password(""),
@@ -75,7 +75,7 @@ class Record with _$Record {
       Record(
           id: UniqueId(),
           name: Name(recordName),
-          type: RecordType.record,
+          type: Type.record,
           accountType: AccountType.personal,
           loginRecord: Name(loginRecord),
           passwordRecord: Password(loginPassword),
@@ -99,7 +99,7 @@ class Record with _$Record {
       Record(
           id: id,
           name: Name(recordName),
-          type: RecordType.record,
+          type: Type.record,
           accountType: AccountType.personal,
           loginRecord: Name(loginRecord),
           passwordRecord: Password(loginPassword),

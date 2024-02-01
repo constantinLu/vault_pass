@@ -11,11 +11,11 @@ import 'package:vault_pass/infrastructure/setup/app.logger.dart';
 import 'package:vault_pass/infrastructure/setup/app.router.dart';
 
 class HomeViewModel<T> extends IndexTrackingViewModel {
-  final Map<RecordType, String> _imageType = {
-    RecordType.record: IMAGE_ACCOUNT,
-    RecordType.address: IMAGE_ADDRESS,
-    RecordType.card: IMAGE_CREDITCARD,
-    RecordType.document: IMAGE_CREDITCARD,
+  final Map<Type, String> _imageType = {
+    Type.record: IMAGE_ACCOUNT,
+    Type.address: IMAGE_ADDRESS,
+    Type.card: IMAGE_CREDITCARD,
+    Type.document: IMAGE_CREDITCARD,
   };
 
   final log = getLogger('HomeViewModel');
@@ -25,12 +25,13 @@ class HomeViewModel<T> extends IndexTrackingViewModel {
 
   final String userId;
   bool accountType = true;
+  String welcomeMessage = "Hello";
 
   List<Record> personalRecords = [
-    Record.random(recordName: "google", logo: "logo", description: "some description", url: "asd", recordType: RecordType.record),
-    Record.random(recordName: "Home Address", logo: "logo2", description: "some description2", url: "asd2", recordType: RecordType.address),
-    Record.random(recordName: "Revolut Card", logo: "N/A", description: "Online card", url: "N/A", recordType: RecordType.card),
-    Record.random(recordName: "ID", logo: "N/A", description: "My ID", url: "TBD", recordType: RecordType.document),
+    Record.random(recordName: "google", logo: "logo", description: "some description", url: "asd", recordType: Type.record),
+    Record.random(recordName: "Home Address", logo: "logo2", description: "some description2", url: "asd2", recordType: Type.address),
+    Record.random(recordName: "Revolut Card", logo: "N/A", description: "Online card", url: "N/A", recordType: Type.card),
+    Record.random(recordName: "ID", logo: "N/A", description: "My ID", url: "TBD", recordType: Type.document),
   ];
   List<Record> businessRecords = [
     Record.random(
@@ -38,58 +39,61 @@ class HomeViewModel<T> extends IndexTrackingViewModel {
         logo: "logo",
         description: "some description",
         url: "asd",
-        recordType: RecordType.record,
+        recordType: Type.record,
         accountType: AccountType.business),
     Record.random(
         recordName: "Office Address",
         logo: "logo2",
         description: "some description2",
         url: "asd2",
-        recordType: RecordType.address,
+        recordType: Type.address,
         accountType: AccountType.business),
     Record.random(
         recordName: "Company Card",
         logo: "N/A",
         description: "Online card",
         url: "N/A",
-        recordType: RecordType.card,
+        recordType: Type.card,
         accountType: AccountType.business),
     Record.random(
-        recordName: "ID",
-        logo: "N/A",
-        description: "My ID",
-        url: "TBD",
-        recordType: RecordType.document,
-        accountType: AccountType.business),
+        recordName: "ID", logo: "N/A", description: "My ID", url: "TBD", recordType: Type.document, accountType: AccountType.business),
   ];
 
   List<Record> personalRecords1 = [];
   List<Record> businessRecords1 = [];
 
-  List<RecordType> get recordTypes => _imageType.keys.map((type) => type).toList();
-
-  RecordType get currentRecordType => _imageType.keys.toList()[currentIndex];
+  List<Type> get recordTypes => _imageType.keys.map((type) => type).toList();
 
   List<String> get recordNames => _imageType.keys.map((type) => type.name).toList();
 
+  Type get currentRecordType => _imageType.keys.toList()[currentIndex];
+
+  String get currentRecordImage => _imageType.values.toList()[currentIndex];
+
   HomeViewModel({required this.userId, records});
 
-  List<dynamic> provideRecords() {
+  void initData() {
+    _initRecords();
+    _initWelcomeMessage();
+    rebuildUi();
+  }
+
+  bool checkRecords() {
     if (isPersonalAccountSelected()) {
-      return personalRecords1.where((element) => element.type == currentRecordType).toList();
+      return personalRecords1.isEmpty;
     } else {
-      return businessRecords1.where((element) => element.type == currentRecordType).toList();
+      return businessRecords1.isEmpty;
     }
   }
 
-  void selectRecords() async {
+  List<dynamic> provideRecords() {
+    List<Record> result;
     if (isPersonalAccountSelected()) {
-      personalRecords1 = await _recordRepository.getByType(AccountType.personal, currentRecordType);
-      personalRecords1 = personalRecords;
+      result = personalRecords1.where((element) => element.type == currentRecordType).toList();
     } else {
-      businessRecords1 = await _recordRepository.getByType(AccountType.business, currentRecordType);
-      businessRecords1 = businessRecords;
+      result = businessRecords1.where((element) => element.type == currentRecordType).toList();
     }
+    return result;
   }
 
   String imageTypes() {
@@ -102,10 +106,18 @@ class HomeViewModel<T> extends IndexTrackingViewModel {
     return accountType;
   }
 
-  Future<String> welcomeMessage() async {
+  //INIT BOTH LISTS
+  void _initRecords() async {
+    personalRecords1 = await _recordRepository.getByType(AccountType.personal, currentRecordType);
+    personalRecords1 = personalRecords;
+    businessRecords1 = await _recordRepository.getByType(AccountType.business, currentRecordType);
+    businessRecords1 = businessRecords;
+    notifyListeners();
+  }
+
+  Future<void> _initWelcomeMessage() async {
     final user = await _userService.getUser(UniqueId.fromUniqueString(userId));
-    selectRecords();
-    return "Hello ${user.firstName.get()}";
+    welcomeMessage = "$welcomeMessage ${user.firstName.get()}";
   }
 
   void updateAccount() {

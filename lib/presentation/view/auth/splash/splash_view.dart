@@ -8,7 +8,7 @@ class SplashView extends StackedView<SplashViewModel> {
 
   @override
   Widget builder(BuildContext context, SplashViewModel viewModel, Widget? child) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator(backgroundColor: Colors.red,)));
+    return const Scaffold(body: Center(child: CircularProgressIndicator(backgroundColor: Colors.teal,)));
   }
 
   @override

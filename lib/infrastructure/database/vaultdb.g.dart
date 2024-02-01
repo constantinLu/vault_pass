@@ -411,10 +411,10 @@ class $RecordTableTable extends RecordTable
       requiredDuringInsert: true);
   static const VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  late final GeneratedColumnWithTypeConverter<RecordType, String> type =
+  late final GeneratedColumnWithTypeConverter<Type, String> type =
       GeneratedColumn<String>('type', aliasedName, false,
               type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<RecordType>($RecordTableTable.$convertertype);
+          .withConverter<Type>($RecordTableTable.$convertertype);
   static const VerificationMeta _accountTypeMeta =
       const VerificationMeta('accountType');
   @override
@@ -621,8 +621,8 @@ class $RecordTableTable extends RecordTable
     return $RecordTableTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<RecordType, String, String> $convertertype =
-      const EnumNameConverter<RecordType>(RecordType.values);
+  static JsonTypeConverter2<Type, String, String> $convertertype =
+      const EnumNameConverter<Type>(Type.values);
   static JsonTypeConverter2<AccountType, String, String> $converteraccountType =
       const EnumNameConverter<AccountType>(AccountType.values);
 }
@@ -630,7 +630,7 @@ class $RecordTableTable extends RecordTable
 class RecordEntry extends DataClass implements Insertable<RecordEntry> {
   final String id;
   final String name;
-  final RecordType type;
+  final Type type;
   final AccountType accountType;
   final bool isFavorite;
   final DateTime createdDate;
@@ -742,7 +742,7 @@ class RecordEntry extends DataClass implements Insertable<RecordEntry> {
   RecordEntry copyWith(
           {String? id,
           String? name,
-          RecordType? type,
+          Type? type,
           AccountType? accountType,
           bool? isFavorite,
           DateTime? createdDate,
@@ -820,7 +820,7 @@ class RecordEntry extends DataClass implements Insertable<RecordEntry> {
 class RecordTableCompanion extends UpdateCompanion<RecordEntry> {
   final Value<String> id;
   final Value<String> name;
-  final Value<RecordType> type;
+  final Value<Type> type;
   final Value<AccountType> accountType;
   final Value<bool> isFavorite;
   final Value<DateTime> createdDate;
@@ -849,7 +849,7 @@ class RecordTableCompanion extends UpdateCompanion<RecordEntry> {
   RecordTableCompanion.insert({
     required String id,
     required String name,
-    required RecordType type,
+    required Type type,
     required AccountType accountType,
     this.isFavorite = const Value.absent(),
     required DateTime createdDate,
@@ -905,7 +905,7 @@ class RecordTableCompanion extends UpdateCompanion<RecordEntry> {
   RecordTableCompanion copyWith(
       {Value<String>? id,
       Value<String>? name,
-      Value<RecordType>? type,
+      Value<Type>? type,
       Value<AccountType>? accountType,
       Value<bool>? isFavorite,
       Value<DateTime>? createdDate,
