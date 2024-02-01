@@ -2,6 +2,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:intl/intl.dart';
+import 'package:vault_pass/domain/model/types.dart';
+
+extension AuthStateExtension on AuthState {
+  static AuthState valueOf(String value) {
+    return AuthState.values.firstWhere((element) => element.toString().split('.').last == value,
+        orElse: () => AuthState.unauthenticated);
+  }
+
+  static String nameA(AuthState state) {
+    return state.name;
+  }
+}
 
 extension EitherX<L, R> on Either<L, R> {
   R asRight() => (this as Right).value;

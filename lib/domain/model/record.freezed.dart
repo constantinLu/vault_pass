@@ -16,17 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Record {
+//core
   UniqueId get id => throw _privateConstructorUsedError;
-  Name get recordName => throw _privateConstructorUsedError;
+  Name get name => throw _privateConstructorUsedError;
   RecordType get type => throw _privateConstructorUsedError;
+  AccountType get accountType => throw _privateConstructorUsedError;
+  DateTime get createdDate => throw _privateConstructorUsedError;
+  DateTime get updatedDate => throw _privateConstructorUsedError;
+  bool? get isFavorite => throw _privateConstructorUsedError; //specific
   Name get loginRecord => throw _privateConstructorUsedError;
   Password get passwordRecord => throw _privateConstructorUsedError;
   String get logo => throw _privateConstructorUsedError;
   Description get description => throw _privateConstructorUsedError;
   Url get url => throw _privateConstructorUsedError;
-  DateTime get createdDate => throw _privateConstructorUsedError;
-  DateTime get updatedDate => throw _privateConstructorUsedError;
-  bool? get isFavorite => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RecordCopyWith<Record> get copyWith => throw _privateConstructorUsedError;
@@ -39,16 +41,17 @@ abstract class $RecordCopyWith<$Res> {
   @useResult
   $Res call(
       {UniqueId id,
-      Name recordName,
+      Name name,
       RecordType type,
+      AccountType accountType,
+      DateTime createdDate,
+      DateTime updatedDate,
+      bool? isFavorite,
       Name loginRecord,
       Password passwordRecord,
       String logo,
       Description description,
-      Url url,
-      DateTime createdDate,
-      DateTime updatedDate,
-      bool? isFavorite});
+      Url url});
 }
 
 /// @nodoc
@@ -65,30 +68,47 @@ class _$RecordCopyWithImpl<$Res, $Val extends Record>
   @override
   $Res call({
     Object? id = null,
-    Object? recordName = null,
+    Object? name = null,
     Object? type = null,
+    Object? accountType = null,
+    Object? createdDate = null,
+    Object? updatedDate = null,
+    Object? isFavorite = freezed,
     Object? loginRecord = null,
     Object? passwordRecord = null,
     Object? logo = null,
     Object? description = null,
     Object? url = null,
-    Object? createdDate = null,
-    Object? updatedDate = null,
-    Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      recordName: null == recordName
-          ? _value.recordName
-          : recordName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as Name,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as RecordType,
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedDate: null == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
       loginRecord: null == loginRecord
           ? _value.loginRecord
           : loginRecord // ignore: cast_nullable_to_non_nullable
@@ -109,18 +129,6 @@ class _$RecordCopyWithImpl<$Res, $Val extends Record>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
-      createdDate: null == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedDate: null == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isFavorite: freezed == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 }
@@ -134,16 +142,17 @@ abstract class _$$RecordImplCopyWith<$Res> implements $RecordCopyWith<$Res> {
   @useResult
   $Res call(
       {UniqueId id,
-      Name recordName,
+      Name name,
       RecordType type,
+      AccountType accountType,
+      DateTime createdDate,
+      DateTime updatedDate,
+      bool? isFavorite,
       Name loginRecord,
       Password passwordRecord,
       String logo,
       Description description,
-      Url url,
-      DateTime createdDate,
-      DateTime updatedDate,
-      bool? isFavorite});
+      Url url});
 }
 
 /// @nodoc
@@ -158,30 +167,47 @@ class __$$RecordImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? recordName = null,
+    Object? name = null,
     Object? type = null,
+    Object? accountType = null,
+    Object? createdDate = null,
+    Object? updatedDate = null,
+    Object? isFavorite = freezed,
     Object? loginRecord = null,
     Object? passwordRecord = null,
     Object? logo = null,
     Object? description = null,
     Object? url = null,
-    Object? createdDate = null,
-    Object? updatedDate = null,
-    Object? isFavorite = freezed,
   }) {
     return _then(_$RecordImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as UniqueId,
-      recordName: null == recordName
-          ? _value.recordName
-          : recordName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as Name,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as RecordType,
+      accountType: null == accountType
+          ? _value.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as AccountType,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedDate: null == updatedDate
+          ? _value.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
       loginRecord: null == loginRecord
           ? _value.loginRecord
           : loginRecord // ignore: cast_nullable_to_non_nullable
@@ -202,45 +228,43 @@ class __$$RecordImplCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as Url,
-      createdDate: null == createdDate
-          ? _value.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedDate: null == updatedDate
-          ? _value.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isFavorite: freezed == isFavorite
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$RecordImpl extends _Record {
+class _$RecordImpl implements _Record {
   _$RecordImpl(
       {required this.id,
-      required this.recordName,
+      required this.name,
       required this.type,
+      required this.accountType,
+      required this.createdDate,
+      required this.updatedDate,
+      this.isFavorite,
       required this.loginRecord,
       required this.passwordRecord,
       required this.logo,
       required this.description,
-      required this.url,
-      required this.createdDate,
-      required this.updatedDate,
-      this.isFavorite})
-      : super._();
+      required this.url});
 
+//core
   @override
   final UniqueId id;
   @override
-  final Name recordName;
+  final Name name;
   @override
   final RecordType type;
+  @override
+  final AccountType accountType;
+  @override
+  final DateTime createdDate;
+  @override
+  final DateTime updatedDate;
+  @override
+  final bool? isFavorite;
+//specific
   @override
   final Name loginRecord;
   @override
@@ -251,16 +275,10 @@ class _$RecordImpl extends _Record {
   final Description description;
   @override
   final Url url;
-  @override
-  final DateTime createdDate;
-  @override
-  final DateTime updatedDate;
-  @override
-  final bool? isFavorite;
 
   @override
   String toString() {
-    return 'Record(id: $id, recordName: $recordName, type: $type, loginRecord: $loginRecord, passwordRecord: $passwordRecord, logo: $logo, description: $description, url: $url, createdDate: $createdDate, updatedDate: $updatedDate, isFavorite: $isFavorite)';
+    return 'Record(id: $id, name: $name, type: $type, accountType: $accountType, createdDate: $createdDate, updatedDate: $updatedDate, isFavorite: $isFavorite, loginRecord: $loginRecord, passwordRecord: $passwordRecord, logo: $logo, description: $description, url: $url)';
   }
 
   @override
@@ -269,9 +287,16 @@ class _$RecordImpl extends _Record {
         (other.runtimeType == runtimeType &&
             other is _$RecordImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.recordName, recordName) ||
-                other.recordName == recordName) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             (identical(other.loginRecord, loginRecord) ||
                 other.loginRecord == loginRecord) &&
             (identical(other.passwordRecord, passwordRecord) ||
@@ -279,29 +304,24 @@ class _$RecordImpl extends _Record {
             (identical(other.logo, logo) || other.logo == logo) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate) &&
-            (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      recordName,
+      name,
       type,
+      accountType,
+      createdDate,
+      updatedDate,
+      isFavorite,
       loginRecord,
       passwordRecord,
       logo,
       description,
-      url,
-      createdDate,
-      updatedDate,
-      isFavorite);
+      url);
 
   @JsonKey(ignore: true)
   @override
@@ -310,28 +330,36 @@ class _$RecordImpl extends _Record {
       __$$RecordImplCopyWithImpl<_$RecordImpl>(this, _$identity);
 }
 
-abstract class _Record extends Record {
+abstract class _Record implements Record {
   factory _Record(
       {required final UniqueId id,
-      required final Name recordName,
+      required final Name name,
       required final RecordType type,
+      required final AccountType accountType,
+      required final DateTime createdDate,
+      required final DateTime updatedDate,
+      final bool? isFavorite,
       required final Name loginRecord,
       required final Password passwordRecord,
       required final String logo,
       required final Description description,
-      required final Url url,
-      required final DateTime createdDate,
-      required final DateTime updatedDate,
-      final bool? isFavorite}) = _$RecordImpl;
-  _Record._() : super._();
+      required final Url url}) = _$RecordImpl;
 
-  @override
+  @override //core
   UniqueId get id;
   @override
-  Name get recordName;
+  Name get name;
   @override
   RecordType get type;
   @override
+  AccountType get accountType;
+  @override
+  DateTime get createdDate;
+  @override
+  DateTime get updatedDate;
+  @override
+  bool? get isFavorite;
+  @override //specific
   Name get loginRecord;
   @override
   Password get passwordRecord;
@@ -341,12 +369,6 @@ abstract class _Record extends Record {
   Description get description;
   @override
   Url get url;
-  @override
-  DateTime get createdDate;
-  @override
-  DateTime get updatedDate;
-  @override
-  bool? get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$RecordImplCopyWith<_$RecordImpl> get copyWith =>

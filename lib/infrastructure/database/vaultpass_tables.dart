@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:vault_pass/domain/model/types.dart';
 
 @DataClassName('UserEntry')
 class UserTable extends Table {
@@ -24,9 +25,17 @@ class UserTable extends Table {
 class RecordTable extends Table {
   TextColumn get id => text()();
 
-  TextColumn get recordName => text().withLength(min: 2, max: 32)();
+  TextColumn get name => text().withLength(min: 2, max: 32)();
 
-  TextColumn get recordType => text().withLength(min: 2, max: 10)();
+  TextColumn get type => textEnum<RecordType>()();
+
+  TextColumn get accountType => textEnum<AccountType>()();
+
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
+
+  DateTimeColumn get createdDate => dateTime()();
+
+  DateTimeColumn get updatedDate => dateTime()();
 
   TextColumn get loginRecord => text().withLength(min: 2, max: 32)();
 
@@ -37,12 +46,6 @@ class RecordTable extends Table {
   TextColumn get description => text().nullable()();
 
   TextColumn get url => text().withLength(min: 2, max: 100)();
-
-  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
-
-  DateTimeColumn get createdDate => dateTime()();
-
-  DateTimeColumn get updatedDate => dateTime()();
 
   @override
   Set<Column> get primaryKey => {id};

@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 import 'package:vault_pass/domain/failures/microtype_failures.dart';
+import 'package:vault_pass/domain/model/types.dart';
 
 import '../model/token.dart';
 import '../validators/validators.dart';
@@ -11,6 +12,10 @@ class Name extends MicroType<String> {
   final Either<MicroTypeFailure<String>, String> value;
 
   const Name._(this.value);
+
+  factory Name.value(String input) {
+    return Name._(validateName(input));
+  }
 
   factory Name(String input) {
     return Name._(validateName(input));
@@ -28,6 +33,10 @@ class EmailAddress extends MicroType<String> {
 
   const EmailAddress._(this.value);
 
+  factory EmailAddress.value(String input) {
+    return EmailAddress._(Either.right(input));
+  }
+
   factory EmailAddress(String input) {
     return EmailAddress._(validateEmailAddress(input));
   }
@@ -43,6 +52,10 @@ class Password extends MicroType<String> {
   final Either<MicroTypeFailure<String>, String> value;
 
   const Password._(this.value);
+
+  factory Password.value(String input) {
+    return Password._(Either.right(input));
+  }
 
   factory Password(String input) {
     return Password._(validatePassword(input));
@@ -60,20 +73,30 @@ class AuthCredentials extends MicroType<Token> {
 
   const AuthCredentials._(this.value);
 
-  factory AuthCredentials(
-      String? userId, String? emailAddress, String? password) {
-    return AuthCredentials._(right(
-        Token(userId: userId, emailAddress: emailAddress, password: password)));
-  }
-
-  factory AuthCredentials.userId(String? userId) {
-    return AuthCredentials._(right(Token(userId: userId)));
-  }
-
-  factory AuthCredentials.authCredentials(
-      String? emailAddress, String? password) {
+  factory AuthCredentials(String? userId, String? emailAddress, AuthState authState) {
     return AuthCredentials._(
-        right(Token(emailAddress: emailAddress, password: password)));
+        right(Token(userId: userId, emailAddress: emailAddress, authState: authState)));
+  }
+
+  ///states
+  factory AuthCredentials.unauthenticated() {
+    return AuthCredentials._(
+        right(Token(userId: null, emailAddress: null, authState: AuthState.unauthenticated)));
+  }
+
+  factory AuthCredentials.authenticated() {
+    return AuthCredentials._(
+        right(Token(userId: null, emailAddress: null, authState: AuthState.authenticated)));
+  }
+
+  factory AuthCredentials.userId(String? userId, AuthState authState) {
+    return AuthCredentials._(
+        right(Token(userId: userId, emailAddress: null, authState: authState)));
+  }
+
+  factory AuthCredentials.authCredentials(String userId, String emailAddress, AuthState authState) {
+    return AuthCredentials._(
+        right(Token(userId: userId, emailAddress: emailAddress, authState: authState)));
   }
 }
 
