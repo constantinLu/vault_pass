@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import 'package:vault_pass/common/package/sizeup.dart';
 import 'package:vault_pass/infrastructure/setup/app.router.dart';
@@ -23,18 +22,17 @@ class MainView extends StatelessWidget {
           darkTheme: primaryTheme,
           lightTheme: primaryTheme,
           defaultThemeMode: ThemeMode.dark,
-          builder: (context, defaultTheme, darkTheme, themeMode) => MaterialApp(
-            initialRoute: Routes.homeView,
-            onGenerateRoute: StackedRouter().onGenerateRoute,
-            navigatorKey: StackedService.navigatorKey,
+          builder: (context, defaultTheme, darkTheme, themeMode) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
             title: 'Vault Pass',
             theme: darkTheme,
             darkTheme: darkTheme,
             themeMode: themeMode,
-            navigatorObservers: [
-              StackedService.routeObserver,
-            ],
+            routerDelegate: stackedRouter.delegate(),
+            routeInformationParser: stackedRouter.defaultRouteParser(),
+            // navigatorObservers: [
+            //   StackedService.routeObserver,
+            // ],
           ),
         );
       },

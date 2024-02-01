@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import 'package:vault_pass/infrastructure/setup/app.locator.dart';
-
 import 'package:vault_pass/presentation/view/main_view.dart';
+
+import 'infrastructure/setup/app.router.dart';
 
 ///TODO:
 ///
@@ -15,7 +16,7 @@ Future main() async {
   systemOrientation();
 
   /// THIS IS REALLY IMPORTANT FOR SETTING UP THE ROUTING AND DEPENDENCY INJECTION
-  await setupLocator();
+  await setupLocator(stackedRouter: stackedRouter);
   await ThemeManager.initialise();
 
   //DbTestData().insertTestData();

@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:vault_pass/domain/failures/model_failures.dart';
 import 'package:vault_pass/domain/microtypes/microtypes.dart';
+import 'package:vault_pass/domain/model/types.dart';
 import 'package:vault_pass/domain/model/user.dart';
 import 'package:vault_pass/infrastructure/database/vaultdb.dart';
 import 'package:vault_pass/infrastructure/database/vaultpass_tables.dart';
@@ -29,8 +30,8 @@ class UserRepository extends DatabaseAccessor<VaultPassDb> with _$UserRepository
           ..where((userEntity) => userEntity.email.equals(emailAddress.get())))
         .getSingleOrNull();
     try {
-      final authCredentials =
-          AuthCredentials.authCredentials(userEntry?.email, userEntry?.password);
+      final authCredentials = AuthCredentials.authCredentials(
+          userEntry!.id, userEntry!.email, AuthState.authorizedCredentials);
       return Either.right(authCredentials);
     } catch (e) {
       return Either.left(const AuthFailure.notAuthorized()); //BAD CREDENTIALS
@@ -44,7 +45,7 @@ class UserRepository extends DatabaseAccessor<VaultPassDb> with _$UserRepository
     final user = UserMapper.toModel(userEntry);
     print("Delay the getUser call");
     return Future.delayed(
-      const Duration(milliseconds: 300),
+      const Duration(milliseconds: 200),
       () => user,
     );
   }

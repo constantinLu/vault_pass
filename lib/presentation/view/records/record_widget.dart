@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:vault_pass/domain/model/types.dart';
 import 'package:vault_pass/presentation/utils/helper.dart';
 
 import '../../../domain/model/record.dart';
@@ -9,8 +10,8 @@ import '../../utils/css.dart';
 import '../../utils/palette.dart';
 import '../../utils/style.dart';
 
-class RecordWidget extends StatefulWidget {
-  final Record record;
+class RecordWidget<T> extends StatefulWidget {
+  final T record;
   final Color textBackgroundColor;
 
   RecordWidget(this.record, this.textBackgroundColor, {Key? key}) : super(key: key);
@@ -26,8 +27,16 @@ class _RecordWidgetState extends State<RecordWidget> {
   @override
   void initState() {
     isVisible = false;
-    isFavorite = widget.record.isFavorite!;
+    isFavorite = cast(widget.record).isFavorite!;
     super.initState();
+  }
+
+  Record cast(Object record) {
+    if (record is Record) {
+      return record as Record;
+    } else {
+      throw Exception("cannot cast");
+    }
   }
 
   Widget build(BuildContext context) {
@@ -58,10 +67,8 @@ class _RecordWidgetState extends State<RecordWidget> {
                         flex: 1,
                         //! TITLE RECORD
                         child: GestureDetector(
-                          child: RecordNameWidget(
-                              title: widget.record.recordName.get(),
-                              textBackgroundColor: widget.textBackgroundColor),
-                          onTap: () => selectView(widget.record, context),
+                          child: RecordNameWidget(title: cast(widget.record).name.get(), textBackgroundColor: widget.textBackgroundColor),
+                          onTap: () => selectView(cast(widget.record), context),
                         ),
                       ),
                     ],
@@ -75,10 +82,10 @@ class _RecordWidgetState extends State<RecordWidget> {
                       //! LOGIN RECORD
                       CredentialWidget(
                         icon: Icons.account_circle,
-                        value: widget.record.loginRecord.get(),
+                        value: "asd", //cast(widget.record).loginRecord.get(),
                         isVisible: true,
                       ),
-                      CopyWidget(copyData: widget.record.loginRecord.get()),
+                      CopyWidget(copyData: "asd2"), //cast(widget.record).loginRecord.get()),
                     ],
                   ),
 
@@ -89,10 +96,10 @@ class _RecordWidgetState extends State<RecordWidget> {
                       //! PASSWORD RECORD
                       CredentialWidget(
                         icon: Icons.lock,
-                        value: widget.record.passwordRecord.get(),
+                        value: "pass", //cast(widget.record).passwordRecord.get(),
                         isVisible: isVisible,
                       ),
-                      CopyWidget(copyData: widget.record.passwordRecord.get()),
+                      CopyWidget(copyData: "asd"), //cast(widget.record).passwordRecord.get()),
                     ],
                   ),
 
@@ -139,15 +146,17 @@ class _RecordWidgetState extends State<RecordWidget> {
 
   void selectView(Record record, BuildContext context) {
     switch (record.type) {
-      case RecordType.account:
+      case RecordType.record:
         //context.pushTo(AccountView(record: record));
         break;
       case RecordType.address:
         // context.pushTo(AccountView(record: record));
         break;
-      case RecordType.business:
+      case RecordType.card:
         //context.pushTo(AccountView(record: record));
         break;
+      case RecordType.document:
+      // TODO: Handle this case.
     }
   }
 }
@@ -169,11 +178,7 @@ class RecordNameWidget extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: headerText20(blackFull)),
-          const SizedBox(width: 80),
-          const Icon(Icons.open_in_full_sharp)
-        ],
+        children: [Text(title, style: headerText20(blackFull)), const SizedBox(width: 80), const Icon(Icons.open_in_full_sharp)],
       ),
     );
   }
@@ -231,9 +236,7 @@ class CredentialWidget extends StatelessWidget {
   final String value;
   final bool isVisible;
 
-  const CredentialWidget(
-      {Key? key, required this.icon, required this.value, required this.isVisible})
-      : super(key: key);
+  const CredentialWidget({Key? key, required this.icon, required this.value, required this.isVisible}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

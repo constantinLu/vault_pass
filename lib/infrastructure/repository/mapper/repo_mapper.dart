@@ -35,32 +35,35 @@ class RecordMapper {
   static Record toModel(RecordEntry recordEntry) {
     return Record(
       id: UniqueId.fromUniqueString(recordEntry.id),
-      recordName: Name.of(recordEntry.recordName),
-      type: RecordType.valueOf(recordEntry.recordType),
-      logo: recordEntry.logo,
-      loginRecord: Name.of(recordEntry.loginRecord),
-      passwordRecord: Password.of(recordEntry.passwordRecord),
-      description: Description(recordEntry.description!),
-      url: Url(recordEntry.url),
-      isFavorite: recordEntry.isFavorite,
+      name: Name.of(recordEntry.name),
+      type: recordEntry.type,
+      accountType: recordEntry.accountType,
       createdDate: recordEntry.createdDate,
       updatedDate: recordEntry.updatedDate,
+      isFavorite: recordEntry.isFavorite,
+      loginRecord: Name.of(recordEntry.loginRecord),
+      passwordRecord: Password.of(recordEntry.passwordRecord),
+      logo: recordEntry.logo,
+      description: Description(recordEntry.description!),
+      url: Url(recordEntry.url),
     );
   }
 
   static RecordEntry toEntry(Record record) {
     return RecordEntry(
       id: record.id.get(),
-      recordName: record.recordName.get(),
-      recordType: record.type.value,
+      name: record.name.get(),
+      type: record.type,
+      accountType: record.accountType,
+      createdDate: record.createdDate,
+      updatedDate: record.updatedDate,
+      isFavorite: record.isFavorite ?? false,
+      //
       logo: record.logo,
       loginRecord: record.loginRecord.get(),
       passwordRecord: record.passwordRecord.get(),
       description: record.description.get(),
       url: record.url.get(),
-      isFavorite: record.isFavorite ?? false,
-      createdDate: record.createdDate,
-      updatedDate: record.updatedDate,
     );
   }
 

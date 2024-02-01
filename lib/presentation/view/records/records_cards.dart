@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/model/record.dart';
 import '../../utils/palette.dart';
 import 'record_widget.dart';
 
-class RecordCards extends StatelessWidget {
+class RecordCards<T> extends StatelessWidget {
   const RecordCards(this._records, {Key? key}) : super(key: key);
 
-  final List<Record> _records;
+  final List<T> _records;
 
   @override
   Widget build(BuildContext context) {

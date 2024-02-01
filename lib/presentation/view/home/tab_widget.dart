@@ -2,113 +2,89 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
 import 'package:vault_pass/application/assets.dart';
+import 'package:vault_pass/domain/model/types.dart';
 import 'package:vault_pass/presentation/view/home/home_model.dart';
 
-import '../../../domain/model/record.dart';
 import '../../core/device_size.dart';
 import '../../utils/css.dart';
-
-class TabWidget extends ViewModelWidget<HomeModel> {
-  TabWidget(this.currentIndex);
-
-  final Map<RecordType, String> _imageType = {
-    RecordType.account: IMAGE_ACCOUNT,
-    RecordType.address: IMAGE_ADDRESS,
-    RecordType.business: IMAGE_CREDITCARD
-  };
-
-  List<RecordType> get recordTypes => _imageType.keys.map((type) => type).toList();
-
-  String imageTypes(index) => _imageType[recordTypes[index]]!;
-
-  int currentIndex = 0;
-
-  //check index helper
-  bool checkIndex({required int index}) => currentIndex == index;
-
-  @override
-  Widget build(BuildContext context, HomeModel homeModel) {
-    // return BlocConsumer<RecordTypeBloc, RecordTypeState>(
-    //   listener: (BuildContext context, RecordTypeState state) {
-    //     state.maybeMap(
-    //         success: (state) {
-    //           currentIndex = state.tabIndex;
-    //         },
-    //         orElse: () {});
-    //   },
-    //   builder: (BuildContext context, RecordTypeState state) {
-    //     /// IMPORTANT!! THIS expression should be used when we need to add an event
-    //     /// see bloc documentation
-    //     final recordTypeBloc = context.read<RecordTypeBloc>();
-    //
-    //     /// how to get the state (same as above) - do not use to update states
-    //     //final recordTypeState = BlocProvider.of<RecordTypeBloc>(context).state;
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      margin: const EdgeInsets.fromLTRB(5, 2, 5, 5),
-      //TODO: AICI E O PROBLEMA DE RANDARE
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    //recordTypeBloc.add(const RecordTypeEvent.accountTabBtnPressed(0));
-                    homeModel.routeTo(0);
-                  },
-                  child: TabButton(checkIndex(index: 0), RecordType.account),
-                ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    currentIndex = 1;
-                    homeModel.getAddress();
-                    //recordTypeBloc.add(const RecordTypeEvent.addressTabBtnPressed(1));
-                  },
-                  child: TabButton(checkIndex(index: 1), RecordType.address),
-                ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    currentIndex = 2;
-                    // recordTypeBloc.add(const RecordTypeEvent.businessAccountBtnPressed(2));
-                  },
-                  child: TabButton(checkIndex(index: 2), RecordType.business),
-                ),
-              ),
-            ],
-          ),
-          //! BODY
-          // state.map(
-          //     initial: (_) => Container(), //DO NOTHING
-          //     loading: (_) => const CircularProgressIndicator(),
-          //     success: (state) => GestureSlider(
-          //           typeBloc: recordTypeBloc,
-          //           tabIndex: state.tabIndex,
-          //           child: Container(
-          //               margin: const EdgeInsets.only(top: 20),
-          //               width: double.infinity,
-          //               height: heightPercentOf(63, context),
-          //               child: state.records.isEmpty
-          //                   ? Center(child: BackgroundImage(imageTypes(currentIndex)))
-          //                   : RecordCards(state.records)),
-          //         ),
-          //     failure: (_) => const Center(child: Text("ERROR", style: bodyText15_white)))
-        ],
-      ),
-    );
-  }
-}
-
+//
+// class TabWidget extends ViewModelWidget<HomeViewModel> {
+//   TabWidget(this.currentIndex);
+//
+//   final Map<String, String> _imageType = {
+//     String.record: IMAGE_ACCOUNT,
+//     String.address: IMAGE_ADDRESS,
+//     String.card: IMAGE_CREDITCARD,
+//     String.document: IMAGE_CREDITCARD
+//   };
+//
+//   List<String> get recordTypes => _imageType.keys.map((type) => type).toList();
+//
+//   String imageTypes(index) => _imageType[recordTypes[index]]!;
+//
+//   int currentIndex = 0;
+//
+//   //check index helper
+//   bool checkIndex({required int index}) => currentIndex == index;
+//
+//   @override
+//   Widget build(BuildContext context, HomeViewModel homeModel) {
+//     return Container(
+//       width: double.infinity,
+//       height: double.infinity,
+//       margin: const EdgeInsets.fromLTRB(5, 2, 5, 5),
+//       //TODO: AICI E O PROBLEMA DE RANDARE
+//       child: Column(
+//         children: <Widget>[
+//           Row(
+//             children: <Widget>[
+//               Expanded(
+//                 child: GestureDetector(
+//                   onTap: () {},
+//                   child: TabButton(checkIndex(index: 0), RecordType.record),
+//                 ),
+//               ),
+//               Expanded(
+//                 child: GestureDetector(
+//                   onTap: () {
+//                     currentIndex = 1;
+//                   },
+//                   child: TabButton(checkIndex(index: 1), String.address),
+//                 ),
+//               ),
+//               Expanded(
+//                 child: GestureDetector(
+//                   onTap: () {
+//                     currentIndex = 2;
+//                   },
+//                   child: TabButton(checkIndex(index: 2), String.card),
+//                 ),
+//               ),
+//               Expanded(
+//                 child: GestureDetector(
+//                   onTap: () {
+//                     currentIndex = 3;
+//                   },
+//                   child: TabButton(checkIndex(index: 3), String.document),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           SizedBox(
+//               width: double.infinity,
+//               height: heightPercentOf(63, context),
+//               child: Center(child: BackgroundImage(imageTypes(currentIndex))))
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
 class TabButton extends StatelessWidget {
   final bool checkIndex;
-  final RecordType recordType;
+  final String recordName;
 
-  const TabButton(this.checkIndex, this.recordType, {Key? key}) : super(key: key);
+  const TabButton(this.checkIndex, this.recordName, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +106,7 @@ class TabButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Text(
-              recordType.value,
+              recordName,
               style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             ),
           ),

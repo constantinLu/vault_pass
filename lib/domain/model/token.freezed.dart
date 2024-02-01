@@ -16,9 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Token {
-  dynamic get userId => throw _privateConstructorUsedError;
-  dynamic get emailAddress => throw _privateConstructorUsedError;
-  dynamic get password => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
+  String? get emailAddress => throw _privateConstructorUsedError;
+  AuthState get authState => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TokenCopyWith<Token> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +29,7 @@ abstract class $TokenCopyWith<$Res> {
   factory $TokenCopyWith(Token value, $Res Function(Token) then) =
       _$TokenCopyWithImpl<$Res, Token>;
   @useResult
-  $Res call({dynamic userId, dynamic emailAddress, dynamic password});
+  $Res call({String? userId, String? emailAddress, AuthState authState});
 }
 
 /// @nodoc
@@ -47,21 +47,21 @@ class _$TokenCopyWithImpl<$Res, $Val extends Token>
   $Res call({
     Object? userId = freezed,
     Object? emailAddress = freezed,
-    Object? password = freezed,
+    Object? authState = null,
   }) {
     return _then(_value.copyWith(
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       emailAddress: freezed == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      password: freezed == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
+      authState: null == authState
+          ? _value.authState
+          : authState // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ) as $Val);
   }
 }
@@ -73,7 +73,7 @@ abstract class _$$TokenImplCopyWith<$Res> implements $TokenCopyWith<$Res> {
       __$$TokenImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic userId, dynamic emailAddress, dynamic password});
+  $Res call({String? userId, String? emailAddress, AuthState authState});
 }
 
 /// @nodoc
@@ -89,13 +89,21 @@ class __$$TokenImplCopyWithImpl<$Res>
   $Res call({
     Object? userId = freezed,
     Object? emailAddress = freezed,
-    Object? password = freezed,
+    Object? authState = null,
   }) {
     return _then(_$TokenImpl(
-      userId: freezed == userId ? _value.userId! : userId,
-      emailAddress:
-          freezed == emailAddress ? _value.emailAddress! : emailAddress,
-      password: freezed == password ? _value.password! : password,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailAddress: freezed == emailAddress
+          ? _value.emailAddress
+          : emailAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      authState: null == authState
+          ? _value.authState
+          : authState // ignore: cast_nullable_to_non_nullable
+              as AuthState,
     ));
   }
 }
@@ -103,18 +111,22 @@ class __$$TokenImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TokenImpl extends _Token {
-  _$TokenImpl({this.userId, this.emailAddress, this.password}) : super._();
+  _$TokenImpl(
+      {required this.userId,
+      required this.emailAddress,
+      required this.authState})
+      : super._();
 
   @override
-  final dynamic userId;
+  final String? userId;
   @override
-  final dynamic emailAddress;
+  final String? emailAddress;
   @override
-  final dynamic password;
+  final AuthState authState;
 
   @override
   String toString() {
-    return 'Token(userId: $userId, emailAddress: $emailAddress, password: $password)';
+    return 'Token(userId: $userId, emailAddress: $emailAddress, authState: $authState)';
   }
 
   @override
@@ -122,18 +134,15 @@ class _$TokenImpl extends _Token {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TokenImpl &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality()
-                .equals(other.emailAddress, emailAddress) &&
-            const DeepCollectionEquality().equals(other.password, password));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.emailAddress, emailAddress) ||
+                other.emailAddress == emailAddress) &&
+            (identical(other.authState, authState) ||
+                other.authState == authState));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(emailAddress),
-      const DeepCollectionEquality().hash(password));
+  int get hashCode => Object.hash(runtimeType, userId, emailAddress, authState);
 
   @JsonKey(ignore: true)
   @override
@@ -144,17 +153,17 @@ class _$TokenImpl extends _Token {
 
 abstract class _Token extends Token {
   factory _Token(
-      {final dynamic userId,
-      final dynamic emailAddress,
-      final dynamic password}) = _$TokenImpl;
+      {required final String? userId,
+      required final String? emailAddress,
+      required final AuthState authState}) = _$TokenImpl;
   _Token._() : super._();
 
   @override
-  dynamic get userId;
+  String? get userId;
   @override
-  dynamic get emailAddress;
+  String? get emailAddress;
   @override
-  dynamic get password;
+  AuthState get authState;
   @override
   @JsonKey(ignore: true)
   _$$TokenImplCopyWith<_$TokenImpl> get copyWith =>
