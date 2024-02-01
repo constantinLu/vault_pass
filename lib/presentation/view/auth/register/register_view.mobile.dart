@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vault_pass/presentation/utils/palette.dart';
-import 'package:vault_pass/presentation/utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 import 'package:vault_pass/presentation/view/auth/register/register_model.dart';
 import 'package:vault_pass/presentation/view/auth/register/register_view.dart';
 import 'package:vault_pass/presentation/widgets/btns/reset_back_btn.dart';

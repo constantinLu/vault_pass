@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:path/path.dart';
+import 'package:vault_pass/common/pub.dev/utils/butter.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
-import '../core/device_size.dart';
-import '../utils/butter.dart';
-import '../utils/css.dart';
-import '../utils/palette.dart';
-import '../utils/style.dart';
+import '../../common/pub.dev/sizeup/device_size.dart';
 
 class ViewCardWidget extends StatelessWidget {
   final Map<String, String> textWidget;
@@ -14,12 +13,7 @@ class ViewCardWidget extends StatelessWidget {
   final int cardHeight;
   final Color? cardColor;
 
-  ViewCardWidget(
-      {required this.textWidget,
-      required this.cardHeight,
-      this.textWidgetStyle,
-      this.cardColor,
-      super.key}) {
+  ViewCardWidget({required this.textWidget, required this.cardHeight, this.textWidgetStyle, this.cardColor, super.key}) {
     if (textWidget.size > 1) {
       checkHeight(cardHeight, 25);
     }

@@ -1,17 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 import 'package:vault_pass/presentation/view/home/home_model.dart';
 import 'package:vault_pass/presentation/view/home/tab_widget.dart';
 import 'package:vault_pass/presentation/widgets/btns/fab_btn.dart';
 import 'package:vault_pass/presentation/widgets/btns/reset_back_btn.dart';
 
-import '../../core/device_size.dart';
-import '../../utils/css.dart';
-import '../../utils/palette.dart';
-import '../../utils/style.dart';
+import '../../../common/pub.dev/sizeup/device_size.dart';
 import '../../widgets/avatar_widget.dart';
 
+///
+//TODO: other way of writing
+// return ViewModelBuilder<HomeViewModel>.reactive(
+//   //onViewModelReady: ,
+//   viewModelBuilder: () => HomeViewModel(),
+//   builder: (BuildContext context, HomeViewModel model, Widget? child) {
+///
 class HomeView extends StackedView<HomeViewModel> {
   final String userId;
 
@@ -19,11 +26,6 @@ class HomeView extends StackedView<HomeViewModel> {
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
-    //TODO: other way of writing
-    // return ViewModelBuilder<HomeViewModel>.reactive(
-    //   //onViewModelReady: ,
-    //   viewModelBuilder: () => HomeViewModel(),
-    //   builder: (BuildContext context, HomeViewModel model, Widget? child) {
     return ResetBackBtnWidget(
       child: Scaffold(
         /// HEADER
@@ -33,7 +35,8 @@ class HomeView extends StackedView<HomeViewModel> {
           elevation: 0,
           leading: Transform.scale(
             scaleX: -1,
-            //! LOGOUT BUTTON
+
+            /// LOGOUT BUTTON
             child: IconButton(
                 tooltip: "Logout",
                 onPressed: () => viewModel.navigateToLoginView(),

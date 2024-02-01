@@ -37,3 +37,4 @@ enum AuthState {
     return AuthState.values.firstWhere((element) => element.toString().split('.').last == value, orElse: () => AuthState.unauthenticated);
   }
 }
+

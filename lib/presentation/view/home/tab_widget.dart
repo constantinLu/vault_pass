@@ -8,7 +8,9 @@ import '../../widgets/background_image_widget.dart';
 import '../../widgets/btns/tab_btn.dart';
 
 class TabWidget extends ViewModelWidget<HomeViewModel> {
-  PageController pageController = PageController();
+  final PageController pageController = PageController();
+
+  TabWidget({super.key});
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
@@ -66,13 +68,5 @@ class TabWidget extends ViewModelWidget<HomeViewModel> {
         ],
       ),
     );
-  }
-}
-
-void swiper(DragEndDetails details) {
-  if (details.primaryVelocity! > 0) {
-// User swiped Left
-  } else if (details.primaryVelocity! < 0) {
-// User swiped Right
   }
 }

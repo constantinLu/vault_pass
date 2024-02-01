@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
-import '../utils/css.dart';
-import '../utils/style.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String hintText;

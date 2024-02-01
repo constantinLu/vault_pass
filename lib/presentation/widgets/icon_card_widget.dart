@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/butter.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
 
-import '../core/device_size.dart';
-import '../utils/butter.dart';
-import '../utils/css.dart';
-import '../utils/palette.dart';
+import '../../common/pub.dev/sizeup/device_size.dart';
 
 class IconCardWidget extends StatelessWidget {
   final List<TextButton> textButton;

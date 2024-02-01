@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vault_pass/common/package/util.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/util.dart';
 
 /// Provides `Context`, `Orientation`, and `DeviceType` parameters to the builder function
 typedef ResponsiveBuild = Widget Function(

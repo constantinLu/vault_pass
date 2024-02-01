@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
-import '../utils/palette.dart';
-import '../utils/style.dart';
 import '../widgets/title_widget.dart';
 import '../widgets/view_card_widget.dart';
 
@@ -26,12 +26,8 @@ class NotificationView extends StatelessWidget {
 
                     //! NOTIFICATION TEXT
                     ViewCardWidget(
-                      textWidget: const {
-                        "History Notifications": "All notification will appear here."
-                      },
-                      textWidgetStyle: {
-                        bodyText(15, Palette.greySpanish): bodyText(12, Palette.whiteSnow)
-                      },
+                      textWidget: const {"History Notifications": "All notification will appear here."},
+                      textWidgetStyle: {bodyText(15, Palette.greySpanish): bodyText(12, Palette.whiteSnow)},
                       cardHeight: 16,
                     ),
                   ],

@@ -1,4 +1,4 @@
-import 'package:vault_pass/common/package/util.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/util.dart';
 
 extension Sizeup on num {
   /// Calculates the height depending on the device's screen size

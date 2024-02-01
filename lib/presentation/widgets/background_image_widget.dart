@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:vault_pass/presentation/core/device_size.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/device_size.dart';
 
 class BackgroundImage extends StatelessWidget {
   final String illustration;

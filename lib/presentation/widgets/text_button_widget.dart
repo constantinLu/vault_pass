@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../utils/butter.dart';
-import '../utils/css.dart';
-import '../utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/butter.dart';
+import 'package:vault_pass/common/pub.dev/utils/css.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
 class TextButtonWidget extends StatelessWidget {
   const TextButtonWidget({
@@ -54,8 +53,7 @@ class TextButtonWidget extends StatelessWidget {
                   children: [_progressIndicator()],
                 )
               : Row(
-                  mainAxisAlignment:
-                      _isBtnDef() ? MainAxisAlignment.center : MainAxisAlignment.start,
+                  mainAxisAlignment: _isBtnDef() ? MainAxisAlignment.center : MainAxisAlignment.start,
                   children: [
                     Icon(icon, size: _isBtnDef() ? 0 : 20),
                     SizedBox(width: _isBtnDef() ? 0 : 10),

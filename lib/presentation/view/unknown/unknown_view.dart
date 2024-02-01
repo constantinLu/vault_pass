@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vault_pass/common/package/sizeup.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/sizeup.dart';
 
 import 'unknown_model.dart';
 import 'unknown_view.mobile.dart';

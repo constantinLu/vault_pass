@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 
-import '../../utils/palette.dart';
-import '../../utils/style.dart';
 import '../../widgets/title_widget.dart';
 import '../../widgets/view_card_widget.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vault_pass/domain/core/extensions.dart';
-import 'package:vault_pass/presentation/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
 
 //TODO: remove child if not needed
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {

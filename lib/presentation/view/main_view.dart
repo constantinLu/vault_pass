@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-import 'package:vault_pass/common/package/sizeup.dart';
+import 'package:vault_pass/common/pub.dev/sizeup/sizeup.dart';
 import 'package:vault_pass/infrastructure/setup/app.router.dart';
 import 'package:vault_pass/infrastructure/setup/theme_setup.dart';
 
-import '../../infrastructure/setup/app.locator.dart';
-
 class MainView extends StatelessWidget {
-  static const String title = 'Vault Pass';
-
-  MainView({super.key});
-
-  final _themeService = locator<ThemeService>();
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +24,6 @@ class MainView extends StatelessWidget {
             themeMode: themeMode,
             routerDelegate: stackedRouter.delegate(),
             routeInformationParser: stackedRouter.defaultRouteParser(),
-            // navigatorObservers: [
-            //   StackedService.routeObserver,
-            // ],
           ),
         );
       },

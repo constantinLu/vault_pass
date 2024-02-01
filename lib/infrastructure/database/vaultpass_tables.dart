@@ -50,3 +50,85 @@ class RecordTable extends Table {
   @override
   Set<Column> get primaryKey => {id};
 }
+
+@DataClassName('AddressEntry')
+class AddressTable extends Table {
+  TextColumn get id => text()();
+
+  TextColumn get name => text().withLength(min: 2, max: 32)();
+
+  TextColumn get type => textEnum<Type>()();
+
+  TextColumn get accountType => textEnum<AccountType>()();
+
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
+
+  DateTimeColumn get createdDate => dateTime()();
+
+  DateTimeColumn get updatedDate => dateTime()();
+
+  //
+  TextColumn get addressLine => text().withLength(min: 2, max: 200)();
+
+  TextColumn get county => text().withLength(min: 2, max: 32)();
+
+  TextColumn get city => text().withLength(min: 2, max: 32)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+@DataClassName('CardEntry')
+class CardTable extends Table {
+  TextColumn get id => text()();
+
+  TextColumn get name => text().withLength(min: 2, max: 32)();
+
+  TextColumn get type => textEnum<Type>()();
+
+  TextColumn get accountType => textEnum<AccountType>()();
+
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
+
+  DateTimeColumn get createdDate => dateTime()();
+
+  DateTimeColumn get updatedDate => dateTime()();
+
+  TextColumn get holderName => text().withLength(min: 2, max: 100)();
+
+  TextColumn get cardNo => text().withLength(min: 2, max: 100)();
+
+  TextColumn get expiryDate => text().withLength(min: 2, max: 5)();
+
+  TextColumn get cvv => text().withLength(min: 3, max: 3)();
+
+  TextColumn get brand => text().withLength(min: 3, max: 50)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+@DataClassName('DocumentEntry')
+class DocumentTable extends Table {
+  TextColumn get id => text()();
+
+  TextColumn get name => text().withLength(min: 2, max: 32)();
+
+  TextColumn get type => textEnum<Type>()();
+
+  TextColumn get accountType => textEnum<AccountType>()();
+
+  BoolColumn get isFavorite => boolean().withDefault(const Constant(false))();
+
+  DateTimeColumn get createdDate => dateTime()();
+
+  DateTimeColumn get updatedDate => dateTime()();
+
+  //TODO: this should be saved as json data because its comes as a    required Map<String, String> data, from the dart model.
+  TextColumn get data => text().withLength(min: 2, max: 200)();
+
+  TextColumn get details => text().withLength(min: 2, max: 200)();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}

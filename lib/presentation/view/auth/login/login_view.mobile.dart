@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:vault_pass/presentation/utils/palette.dart';
-import 'package:vault_pass/presentation/utils/style.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/style.dart';
 import 'package:vault_pass/presentation/view/auth/register/register_view.dart';
 import 'package:vault_pass/presentation/widgets/btns/reset_back_btn.dart';
 import 'package:vault_pass/presentation/widgets/text_button_widget.dart';

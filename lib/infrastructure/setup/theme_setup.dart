@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raven/raven.dart';
-import 'package:vault_pass/presentation/utils/palette.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
 
 enum Shade {
   l, //light

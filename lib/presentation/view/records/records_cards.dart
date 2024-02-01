@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vault_pass/common/pub.dev/utils/palette.dart';
 
-import '../../utils/palette.dart';
 import 'record_widget.dart';
 
 class RecordCards<T> extends StatelessWidget {
